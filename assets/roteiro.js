@@ -190,7 +190,7 @@
 'import pytest\n' +
 'from selenium import webdriver\n' +
 '\n' +
-'URL = "https://SEU-USUARIO.github.io/netecshop/app.html"\n' +
+'URL = "https://cristianomacedo19.github.io/netecshop/app.html"\n' +
 '\n' +
 '\n' +
 '@pytest.fixture\n' +
@@ -206,7 +206,7 @@
 '    yield driver          # o teste roda aqui\n' +
 '\n' +
 '    driver.quit()         # sempre executado, mesmo se o teste falhar') +
-      '<div class="atencao"><strong>Troque <code class="inline">SEU-USUARIO</code></strong> pelo endereço real informado pelo professor.</div>' +
+      '<div class="dica">O endereço da aplicação já vem preenchido. Se o professor indicar outro, altere apenas a linha <code class="inline">URL = ...</code>.</div>' +
       '<p>Agora um primeiro teste, só para validar a estrutura. Crie <code class="inline">test_login.py</code>:</p>' +
       bloco(
 '# test_login.py\n' +
