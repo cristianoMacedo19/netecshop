@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newsletter NetecShop</title>
+<link rel="stylesheet" href="assets/estilo.css">
+<style>
+  body { background: var(--cinza-claro); }
+  .conteudo { padding: 16px 18px; max-width: 100%; }
+  h3 { margin-top: 0; }
+</style>
+</head>
+<body>
+<div class="conteudo">
+  <h3>Receba nossas ofertas</h3>
+  <div class="busca">
+    <input type="email" id="email-news" placeholder="seu-email@exemplo.com" autocomplete="off">
+    <button id="btn-assinar">Assinar</button>
+  </div>
+  <div class="msg msg-ok oculto" id="msg-news">E-mail inscrito com sucesso na newsletter!</div>
+  <div class="msg msg-erro oculto" id="msg-news-erro">Informe um e-mail válido.</div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var botao = document.getElementById('btn-assinar');
+  var campo = document.getElementById('email-news');
+  var ok = document.getElementById('msg-news');
+  var erro = document.getElementById('msg-news-erro');
+
+  botao.addEventListener('click', function () {
+    ok.classList.add('oculto');
+    erro.classList.add('oculto');
+    var valor = campo.value.trim();
+
+    if (valor.indexOf('@') === -1 || valor.indexOf('.') === -1) {
+      erro.classList.remove('oculto');
+      return;
+    }
+
+    botao.disabled = true;
+    setTimeout(function () {          // atraso proposital: 700 ms
+      botao.disabled = false;
+      ok.classList.remove('oculto');
+      campo.value = '';
+    }, 700);
+  });
+})();
+</script>
+</body>
+</html>

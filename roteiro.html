@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roteiro guiado - Automação de testes com Selenium</title>
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+
+<header class="cabecalho">
+  <h1>Roteiro guiado: automação de testes com Selenium
+    <span class="sub">Teste de Software &middot; IFMA Campus Timon</span>
+  </h1>
+  <div class="barra-usuario">
+    <a href="app.html" target="_blank" rel="noopener" style="color:#fff;font-size:.85rem">Abrir aplicação-alvo &#8599;</a>
+  </div>
+</header>
+
+<main class="conteudo">
+
+  <div id="painel-progresso">
+    <div class="progresso-barra"><div class="progresso-preenchido" id="progresso-preenchido"></div></div>
+    <div class="progresso-texto">
+      <span id="progresso-texto">Etapa 1 de 14</span>
+      &middot; <a href="#" id="link-reiniciar">reiniciar roteiro</a>
+    </div>
+  </div>
+
+  <div class="msg msg-info" style="margin-top:18px">
+    <strong>Como usar este roteiro.</strong> Faça uma etapa de cada vez. Ao concluir, clique em
+    <em>Concluí esta etapa</em> e a próxima aparece. Seu progresso fica salvo neste navegador,
+    então você pode fechar a página e voltar depois.
+  </div>
+
+  <div id="etapas"></div>
+
+  <div class="msg msg-ok oculto" id="msg-final">
+    <strong>Roteiro concluído.</strong> Revise a checklist de entrega da última etapa antes de enviar o trabalho.
+  </div>
+
+  <footer class="rodape">
+    Material didático &mdash; Prof. Francisco Cristiano da Silva Macêdo &middot; IFMA Campus Timon.
+    Selenium é um projeto de código aberto mantido pelo SeleniumHQ.
+  </footer>
+
+</main>
+
+<script src="assets/roteiro.js"></script>
+</body>
+</html>

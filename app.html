@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NetecShop - Aplicação-alvo de testes</title>
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+
+<header class="cabecalho">
+  <h1>NetecShop
+    <span class="sub">Aplicação-alvo para automação de testes &middot; IFMA Campus Timon</span>
+  </h1>
+  <div class="barra-usuario" id="barra-usuario" style="display:none">
+    <span id="ola-usuario"></span>
+    <span>Carrinho: <strong id="contador-carrinho">0</strong></span>
+    <button class="secundario" id="btn-sair">Sair</button>
+  </div>
+</header>
+
+<!-- ======================= TELA 1: LOGIN ======================= -->
+<main class="conteudo conteudo-estreito tela" id="tela-login">
+  <h2>Acessar a loja</h2>
+  <p class="descricao">Use as credenciais fornecidas pelo professor.</p>
+
+  <div class="campo">
+    <label for="usuario">Usuário</label>
+    <input type="text" id="usuario" name="usuario" autocomplete="off" placeholder="digite seu usuário">
+  </div>
+
+  <div class="campo">
+    <label for="senha">Senha</label>
+    <input type="password" id="senha" name="senha" autocomplete="off" placeholder="digite sua senha">
+  </div>
+
+  <button id="btn-entrar" class="bloco">Entrar</button>
+
+  <div class="carregando oculto" id="carregando">
+    <span class="spinner"></span> Verificando credenciais...
+  </div>
+
+  <div class="msg msg-erro oculto" id="msg-erro"></div>
+
+  <div class="msg msg-info" style="margin-top:24px">
+    <strong>Credenciais de teste</strong><br>
+    <code class="inline">aluno</code> / <code class="inline">ifma2026</code> &mdash; acesso normal<br>
+    <code class="inline">professor</code> / <code class="inline">ifma2026</code> &mdash; acesso normal<br>
+    <code class="inline">bloqueado</code> / <code class="inline">ifma2026</code> &mdash; conta bloqueada
+  </div>
+</main>
+
+<!-- ======================= TELA 2: CATÁLOGO ======================= -->
+<main class="conteudo tela oculto" id="tela-catalogo">
+  <h2>Catálogo de produtos</h2>
+  <p class="descricao">Busque, adicione itens ao carrinho e siga para o checkout.</p>
+
+  <div class="selo oculto" id="selo-promocao">PROMOÇÃO RELÂMPAGO: frete expresso com desconto hoje!</div>
+
+  <div class="busca">
+    <input type="text" id="campo-busca" placeholder="Buscar por nome do produto..." autocomplete="off">
+    <button id="btn-buscar">Buscar</button>
+    <button class="secundario" id="btn-limpar-busca">Limpar</button>
+  </div>
+
+  <div class="carregando oculto" id="buscando">
+    <span class="spinner"></span> Filtrando produtos...
+  </div>
+
+  <div class="msg msg-aviso oculto" id="msg-vazio">Nenhum produto encontrado.</div>
+
+  <div class="grade-produtos" id="lista-produtos"></div>
+
+  <div class="acoes">
+    <button id="btn-ir-carrinho">Ver carrinho</button>
+  </div>
+
+  <div class="iframe-caixa">
+    <iframe id="frame-newsletter" src="newsletter.html" title="Newsletter NetecShop"></iframe>
+  </div>
+
+  <footer class="rodape">
+    NetecShop <span id="rodape-versao">v1.0.0</span> &middot; ambiente de treinamento &middot; nenhum dado é enviado a servidores.
+  </footer>
+</main>
+
+<!-- ======================= TELA 3: CARRINHO ======================= -->
+<main class="conteudo tela oculto" id="tela-carrinho">
+  <h2>Meu carrinho</h2>
+  <p class="descricao">Confira os itens antes de finalizar a compra.</p>
+
+  <div class="msg msg-aviso oculto" id="msg-carrinho-vazio">Seu carrinho está vazio.</div>
+
+  <table id="tabela-carrinho">
+    <thead>
+      <tr>
+        <th>SKU</th>
+        <th>Produto</th>
+        <th class="num">Qtd.</th>
+        <th class="num">Preço</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="corpo-carrinho"></tbody>
+  </table>
+
+  <div class="total">Total: <span id="total-carrinho">R$ 0,00</span></div>
+
+  <div class="acoes">
+    <button id="btn-finalizar">Finalizar compra</button>
+    <button class="secundario" id="btn-voltar-catalogo">Continuar comprando</button>
+    <button class="perigo" id="btn-limpar">Esvaziar carrinho</button>
+  </div>
+</main>
+
+<!-- ======================= TELA 4: CHECKOUT ======================= -->
+<main class="conteudo tela oculto" id="tela-checkout">
+  <h2>Dados da entrega</h2>
+  <p class="descricao">Preencha os dados para concluir o pedido.</p>
+
+  <div class="campo">
+    <label for="nome-completo">Nome completo</label>
+    <input type="text" id="nome-completo" name="nome-completo" autocomplete="off">
+  </div>
+
+  <div class="linha">
+    <div class="campo">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" autocomplete="off">
+    </div>
+    <div class="campo">
+      <label for="cep">CEP</label>
+      <input type="text" id="cep" name="cep" autocomplete="off" placeholder="65630-000">
+    </div>
+  </div>
+
+  <div class="campo">
+    <label for="uf">Estado (UF)</label>
+    <select id="uf" name="uf">
+      <option value="">Selecione...</option>
+      <option value="MA">Maranhão</option>
+      <option value="PI">Piauí</option>
+      <option value="CE">Ceará</option>
+      <option value="PA">Pará</option>
+      <option value="TO">Tocantins</option>
+    </select>
+  </div>
+
+  <h3>Modalidade de entrega</h3>
+  <div class="campo-inline">
+    <input type="radio" id="entrega-padrao" name="entrega" value="padrao" checked>
+    <label for="entrega-padrao">Padrão &mdash; 7 dias úteis (grátis)</label>
+  </div>
+  <div class="campo-inline">
+    <input type="radio" id="entrega-expressa" name="entrega" value="expressa">
+    <label for="entrega-expressa">Expressa &mdash; 2 dias úteis (R$ 29,90)</label>
+  </div>
+
+  <div class="campo" style="margin-top:16px">
+    <label for="observacoes">Observações</label>
+    <textarea id="observacoes" name="observacoes" placeholder="Opcional"></textarea>
+  </div>
+
+  <div class="campo-inline">
+    <input type="checkbox" id="aceite" name="aceite">
+    <label for="aceite">Li e aceito os termos de uso e a política de trocas.</label>
+  </div>
+
+  <div class="msg msg-erro oculto" id="msg-erro-checkout"></div>
+
+  <div class="carregando oculto" id="processando">
+    <span class="spinner"></span> Processando pedido...
+  </div>
+
+  <div class="acoes">
+    <button id="btn-confirmar">Confirmar pedido</button>
+    <button class="secundario" id="btn-voltar-carrinho">Voltar ao carrinho</button>
+  </div>
+</main>
+
+<!-- ======================= TELA 5: CONFIRMAÇÃO ======================= -->
+<main class="conteudo conteudo-estreito tela oculto" id="tela-confirmacao">
+  <h2>Pedido confirmado</h2>
+  <div class="msg msg-ok" id="msg-sucesso">Pedido confirmado com sucesso!</div>
+
+  <p class="descricao">Guarde o código abaixo para acompanhar sua entrega.</p>
+
+  <table>
+    <tbody>
+      <tr><th>Código do pedido</th><td><strong id="codigo-pedido"></strong></td></tr>
+      <tr><th>Itens</th><td id="resumo-itens"></td></tr>
+      <tr><th>Entrega</th><td id="resumo-entrega"></td></tr>
+      <tr><th>Total pago</th><td id="resumo-total"></td></tr>
+    </tbody>
+  </table>
+
+  <div class="acoes">
+    <button id="btn-novo-pedido">Fazer novo pedido</button>
+  </div>
+</main>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
