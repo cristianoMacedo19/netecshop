@@ -333,7 +333,8 @@
       '<div class="dica">Repare na segunda asserção do primeiro teste: além de verificar a mensagem, ela garante que o ' +
       'usuário <strong>não entrou</strong>. Verificar a mensagem sozinha não provaria isso &mdash; um sistema pode exibir ' +
       'o erro e liberar o acesso mesmo assim. Essa é uma falha de segurança real, e o teste a detectaria.</div>' +
-      '<p>Rode a suíte inteira: <code class="inline">pytest -v</code>. Três testes devem passar.</p>'
+      '<p>Rode a suíte inteira: <code class="inline">pytest -v</code>. ' +
+      '<strong>Quatro testes devem passar</strong> &mdash; ou cinco, se você fez o desafio do selo promocional na etapa 8.</p>'
   },
 
   /* ---------- 10 ---------- */
