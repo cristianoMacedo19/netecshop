@@ -640,30 +640,63 @@
 'pytest --maxfail=1 -q            # para no primeiro erro') +
       '<p>Rode a suíte <strong>três vezes seguidas</strong>. Todos os testes passaram nas três? ' +
       'Se algum falhou de forma intermitente, você encontrou um teste instável &mdash; corrija a espera antes de entregar.</p>' +
-      '<h3>Checklist de entrega</h3>' +
+      '<h3>O que a equipe entrega</h3>' +
+      '<p>A entrega tem <strong>duas naturezas diferentes</strong>, e confundi-las é o erro mais comum. ' +
+      'Uma coisa é o material técnico; outra é a prestação de contas a quem lidera a equipe.</p>' +
+      '<h3>Parte 1 &mdash; O material técnico (vai no repositório)</h3>' +
       '<ul>' +
-      '<li><code class="inline">netecshop.side</code> &mdash; gravação do Selenium IDE</li>' +
       '<li><code class="inline">conftest.py</code> com a fixture do navegador</li>' +
       '<li>Arquivos de teste cobrindo: login válido, login inválido, conta bloqueada, busca, carrinho, diálogo nativo, checkout completo e iframe</li>' +
       '<li>Pasta <code class="inline">paginas/</code> com pelo menos duas classes de Page Object</li>' +
-      '<li><code class="inline">README.md</code> de meia página</li>' +
-      '<li>Captura de tela da suíte completa passando</li>' +
+      '<li><code class="inline">netecshop.side</code> e <code class="inline">gravado_ide.py</code> &mdash; os arquivos de referência das etapas 5 e 6</li>' +
+      '<li><code class="inline">README.md</code></li>' +
       '</ul>' +
-      '<h3>O que o README deve responder</h3>' +
+      '<h3>Para que serve o README</h3>' +
+      '<div class="dica"><strong>O README não é um resumo do trabalho.</strong> Ele é o manual de quem vai ' +
+      '<em>usar</em> o seu código &mdash; o colega que entra na equipe semana que vem, ou você mesmo daqui a seis meses. ' +
+      'Ele responde a uma única pergunta: <strong>como faço esta suíte rodar na minha máquina?</strong></div>' +
+      '<p>Por isso o README é curto, direto e sem reflexão. Ele contém:</p>' +
       '<ol>' +
-      '<li>Como executar seus testes (comandos exatos).</li>' +
-      '<li>Por que você escolheu cada tipo de seletor.</li>' +
-      '<li>Onde havia risco de teste instável e como você resolveu.</li>' +
-      '<li>As críticas ao código exportado pelo Selenium IDE (etapa 6).</li>' +
-      '<li>Qual teste foi o mais difícil e por quê.</li>' +
+      '<li>O que este projeto testa, em duas linhas.</li>' +
+      '<li>Pré-requisitos: versões de Python, navegador e bibliotecas.</li>' +
+      '<li>Como instalar: os comandos exatos, do <code class="inline">venv</code> ao <code class="inline">pip install</code>.</li>' +
+      '<li>Como executar: <code class="inline">pytest -v</code>, modo headless, rodar só um arquivo.</li>' +
+      '<li>Como está organizada a pasta: o que é cada arquivo.</li>' +
+      '<li>Armadilhas conhecidas: por exemplo, por que <code class="inline">gravado_ide.py</code> não é mais coletado pelo pytest.</li>' +
       '</ol>' +
+      '<div class="atencao">Não escreva no README as suas conclusões, a análise do que deu errado ou as lições ' +
+      'aprendidas. <strong>Isso vai no relatório.</strong> Um README cheio de reflexão atrapalha quem só quer rodar o código.</div>' +
+      '<h3>Parte 2 &mdash; O relatório ao líder de testes</h3>' +
+      '<p>Em uma equipe de testes, quem executa não decide sozinho: reporta a quem lidera. ' +
+      'O <strong>tester master</strong> é o testador sênior que coordena a equipe, decide o que automatizar, ' +
+      'negocia prazos e leva os riscos à gerência. Ele não vai ler o seu código &mdash; ele precisa saber ' +
+      '<em>o que foi testado, o que funcionou, o que travou e o que ele deve decidir</em>.</p>' +
+      '<p>Baixe o modelo, preencha e entregue em PDF:</p>' +
+      '<ul><li><a href="arquivos/modelo-relatorio-testes.docx" download><strong>modelo-relatorio-testes.docx</strong></a> ' +
+      '&mdash; formatado em ABNT, com orientações em cada seção</li></ul>' +
+      '<p>O relatório cobre, entre outros pontos:</p>' +
+      '<ul>' +
+      '<li>O ambiente de teste, com as versões exatas &mdash; sem isso ninguém reproduz o que você relatou</li>' +
+      '<li>O <strong>registro formal do impedimento</strong>: a falha do Selenium IDE, com causa raiz, alcance e ação tomada</li>' +
+      '<li>A justificativa da troca para automação codificada em pytest, <strong>incluindo o custo</strong>: ' +
+      'ambiente virtual, dependências e muito mais tempo de escrita do que gravar um fluxo</li>' +
+      '<li>A tabela de casos executados e os resultados consolidados</li>' +
+      '<li>A análise técnica: seletores, esperas, manutenibilidade</li>' +
+      '<li>As <strong>lições aprendidas</strong> &mdash; respondidas com franqueza, inclusive sobre o que custou tempo</li>' +
+      '<li>Recomendações objetivas a quem lidera</li>' +
+      '</ul>' +
+      '<div class="dica">Em uma frase: o <strong>README</strong> serve a quem vai <em>rodar</em> o código; ' +
+      'o <strong>relatório</strong> serve a quem vai <em>decidir</em> com base nele.</div>' +
+      '<p>Anexe ao relatório a captura de tela da suíte completa em execução, com o resumo final do pytest visível.</p>' +
       '<h3>Critérios de avaliação</h3>' +
       '<table><thead><tr><th>Critério</th><th class="num">Pontos</th></tr></thead><tbody>' +
-      '<tr><td>Suíte executa do início ao fim sem erro</td><td class="num">25</td></tr>' +
-      '<tr><td>Uso correto de esperas explícitas (nenhum sleep fixo)</td><td class="num">25</td></tr>' +
-      '<tr><td>Qualidade e estabilidade dos seletores</td><td class="num">20</td></tr>' +
+      '<tr><td>Suíte executa do início ao fim sem erro</td><td class="num">20</td></tr>' +
+      '<tr><td>Uso correto de esperas explícitas (nenhum sleep fixo)</td><td class="num">20</td></tr>' +
+      '<tr><td>Qualidade e estabilidade dos seletores</td><td class="num">15</td></tr>' +
       '<tr><td>Page Object Model aplicado corretamente</td><td class="num">15</td></tr>' +
-      '<tr><td>README e justificativas técnicas</td><td class="num">15</td></tr>' +
+      '<tr><td>README que permite outra pessoa rodar a suíte</td><td class="num">10</td></tr>' +
+      '<tr><td>Relatório: registro do impedimento e análise técnica</td><td class="num">10</td></tr>' +
+      '<tr><td>Relatório: lições aprendidas e recomendações</td><td class="num">10</td></tr>' +
       '</tbody></table>'
   }
 
