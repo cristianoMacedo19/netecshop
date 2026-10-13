@@ -125,57 +125,106 @@
 
   /* ---------- 4 ---------- */
   {
-    titulo: 'Instalar o Selenium IDE e gravar o login',
-    objetivo: 'Conhecer a ferramenta de gravação e reprodução do ecossistema Selenium.',
+    titulo: 'O Selenium IDE: o que foi, e por que não vamos usá-lo',
+    objetivo: 'Entender a ferramenta de gravação do ecossistema e por que ela saiu de cena.',
     html:
-      '<ol>' +
-      '<li>No <strong>Firefox</strong>, abra a loja de complementos e instale a extensão <strong>Selenium IDE</strong>.</li>' +
-      '<li>Abra a extensão e escolha <em>Record a new test in a new project</em>.</li>' +
-      '<li>Nome do projeto: <code class="inline">netecshop</code>. Nome do teste: <code class="inline">login_valido</code>.</li>' +
-      '<li>Informe a URL base da aplicação (peça ao professor o endereço publicado no GitHub Pages).</li>' +
-      '<li>Com a gravação ligada, faça <strong>exatamente</strong> esta sequência: digitar <code class="inline">aluno</code>, digitar <code class="inline">ifma2026</code>, clicar em <em>Entrar</em>, esperar o catálogo carregar.</li>' +
-      '<li>Pare a gravação e clique em <em>Run current test</em>. Ele deve passar.</li>' +
-      '</ol>' +
-      '<div class="atencao"><strong>Não tente instalar no Chrome.</strong> A extensão foi descontinuada na Chrome Web Store ' +
-      'por causa do fim do Manifest V2 e exibe a mensagem "This extension is no longer available". Isso é, por si só, ' +
-      'uma lição sobre dependência de ferramentas em um pipeline de testes.</div>' +
-      '<p><strong>Observe na lista de comandos gravados:</strong> que tipo de seletor o IDE escolheu sozinho? ' +
-      'Ele usou <code class="inline">id</code>, <code class="inline">css</code> ou <code class="inline">xpath</code>? Anote.</p>'
+      '<div class="atencao"><strong>Esta etapa não exige instalar nada.</strong> ' +
+      'O Selenium IDE está quebrado no Firefox 147 e superiores, que é o que roda na maioria das máquinas. ' +
+      'Em vez de gravar, você vai <em>ler</em> uma gravação pronta &mdash; e entender por que a ferramenta parou.</div>' +
+      '<h3>O que o Selenium IDE faz</h3>' +
+      '<p>É uma extensão de navegador que grava seus cliques e digitações e os reproduz depois. ' +
+      'Serve para prototipar um fluxo rapidamente e descobrir seletores sem escrever código. ' +
+      'Foi criado em 2006 por Shinya Kasatani e doado ao projeto Selenium.</p>' +
+      '<h3>Por que parou de funcionar</h3>' +
+      '<p>Para simular digitação, o IDE injeta JavaScript na página e chama ' +
+      '<code class="inline">KeyboardEvent.initKeyEvent()</code>, uma API antiga que só existiu no Firefox:</p>' +
+      '<table><thead><tr><th>Quando</th><th>O que aconteceu</th></tr></thead><tbody>' +
+      '<tr><td>Firefox 93 (2021)</td><td>A API saiu das páginas web. Extensões foram poupadas, temporariamente.</td></tr>' +
+      '<tr><td>Firefox 147 (jan/2026)</td><td>A exceção das extensões acabou. O comando <code class="inline">type</code> parou.</td></tr>' +
+      '<tr><td>Hoje</td><td>Ninguém corrigiu: o projeto não é mantido ativamente e a última versão publicada ainda é beta.</td></tr>' +
+      '</tbody></table>' +
+      '<p>Confira sua versão em <code class="inline">about:support</code>, campo <em>Versão do aplicativo</em>:</p>' +
+      '<table><thead><tr><th>Versão</th><th>Gravação funciona?</th></tr></thead><tbody>' +
+      '<tr><td>ESR 115.x, ESR 140.x, ou até a 146</td><td>Sim</td></tr>' +
+      '<tr><td><strong>147 em diante</strong> (inclui ESR 153 e a 157 atual)</td><td><strong>Não</strong></td></tr>' +
+      '</tbody></table>' +
+      '<div class="dica"><strong>A lição vale mais que a ferramenta.</strong> Uma suíte de testes é código de produção: ' +
+      'ela herda todas as dependências que você escolhe. O IDE morreu porque dependia de uma API não padronizada, ' +
+      'de um único navegador. Essa é uma decisão de arquitetura, e ela cobra o preço anos depois.</div>' +
+      '<p><strong>Para o README:</strong> em uma frase, qual foi o erro de arquitetura do Selenium IDE?</p>'
   },
 
   /* ---------- 5 ---------- */
   {
-    titulo: 'Adicionar uma asserção e exportar para Python',
-    objetivo: 'Transformar uma gravação em código de teste de verdade.',
+    titulo: 'Ler a gravação e o código que o IDE gerava',
+    objetivo: 'Examinar o que a ferramenta produzia, sem depender dela.',
     html:
-      '<ol>' +
-      '<li>No Selenium IDE, clique com o botão direito na última linha e adicione um novo comando.</li>' +
-      '<li>Comando: <code class="inline">assert text</code> &nbsp;|&nbsp; Alvo: <code class="inline">id=ola-usuario</code> &nbsp;|&nbsp; Valor: <code class="inline">Olá, aluno</code>.</li>' +
-      '<li>Execute novamente para confirmar que a asserção passa.</li>' +
-      '<li>Salve o projeto como <code class="inline">netecshop.side</code> dentro da pasta do seu trabalho. <strong>Este arquivo faz parte da entrega.</strong></li>' +
-      '<li>Clique com o botão direito no nome do teste, escolha <em>Export</em> e selecione <strong>Python pytest</strong>.</li>' +
-      '<li>Salve o arquivo exportado como <code class="inline">test_gravado.py</code>.</li>' +
-      '</ol>' +
-      '<div class="dica">Um teste que apenas navega e não verifica nada <strong>não é um teste</strong> &mdash; é um passeio. ' +
-      'A asserção é o que transforma automação em verificação.</div>'
+      '<p>Baixe os dois arquivos abaixo e guarde na pasta do seu trabalho. ' +
+      'Eles são a gravação do login na NetecShop, feita quando o IDE ainda funcionava.</p>' +
+      '<ul>' +
+      '<li><a href="arquivos/netecshop.side" download><strong>netecshop.side</strong></a> &mdash; o projeto gravado. <strong>Faz parte da entrega.</strong></li>' +
+      '<li><a href="arquivos/test_gravado.py" download><strong>test_gravado.py</strong></a> &mdash; o mesmo teste exportado para Python/pytest.</li>' +
+      '</ul>' +
+      '<h3>1. Abra o .side em um editor de texto</h3>' +
+      '<p>Não é um formato binário: é <strong>JSON</strong>. Procure a lista <code class="inline">commands</code> ' +
+      'e observe a estrutura de cada comando &mdash; <code class="inline">command</code>, ' +
+      '<code class="inline">target</code>, <code class="inline">value</code>. Essa tripla é a linguagem Selenese.</p>' +
+      '<p>Repare também no campo <code class="inline">targets</code>: para cada elemento o IDE guardava ' +
+      '<em>vários</em> seletores alternativos, do mais estável ao mais frágil:</p>' +
+      bloco('"targets": [\n' +
+            '  ["id=usuario", "id"],\n' +
+            '  ["css=#usuario", "css:finder"],\n' +
+            '  ["xpath=//input[@id=\'usuario\']", "xpath:attributes"],\n' +
+            '  ["xpath=//div[2]/input", "xpath:position"]\n' +
+            ']') +
+      '<div class="dica">O último da lista, <code class="inline">xpath:position</code>, é o seletor por posição: ' +
+      '"a entrada dentro da segunda div". Ele quebra assim que alguém insere um elemento antes. ' +
+      'Guarde este exemplo &mdash; é o retrato do que <strong>não</strong> fazer, e volta na etapa 8.</div>' +
+      '<h3>2. Abra o test_gravado.py</h3>' +
+      '<p>Leia sem executar ainda. Responda mentalmente: quantas linhas de espera existem nesse arquivo?</p>' +
+      '<p>Se quiser ver a ferramenta funcionando e sua versão do Firefox permitir (146 ou anterior), ' +
+      'instale a extensão e abra o <code class="inline">.side</code> com <em>Open an existing project</em>. ' +
+      'É opcional e não vale nota.</p>'
   },
 
   /* ---------- 6 ---------- */
   {
-    titulo: 'Executar o código exportado e criticá-lo',
-    objetivo: 'Ver que o código gerado funciona, mas não é código que se mantém.',
+    titulo: 'Executar o código exportado e descobrir por que ele falha',
+    objetivo: 'Ver com os próprios olhos a diferença entre gravar um teste e escrever um teste.',
     html:
-      '<p>Rode o arquivo exportado:</p>' +
+      '<p>Antes de rodar, uma correção obrigatória. Abra o <code class="inline">test_gravado.py</code> ' +
+      'e procure esta linha:</p>' +
+      bloco('self.driver = webdriver.Chrome()') +
+      '<p>O exportador do IDE escreve Chrome, sempre. Troque por Firefox:</p>' +
+      bloco('self.driver = webdriver.Firefox()') +
+      '<p>Agora execute:</p>' +
       bloco('pytest test_gravado.py -v') +
-      '<p>Agora abra o arquivo e responda por escrito (vai para o README da entrega):</p>' +
+      '<div class="atencao"><strong>O teste vai falhar</strong> &mdash; e desta vez a falha é o conteúdo da aula. ' +
+      'A mensagem é um <code class="inline">AssertionError</code> comparando uma string vazia:</div>' +
+      bloco('E       AssertionError: assert \'\' == \'Olá, aluno\'') +
+      '<h3>Por que falha</h3>' +
+      '<p>A NetecShop leva cerca de 900&nbsp;ms para processar o login. O código exportado clica em <em>Entrar</em> e, ' +
+      'na linha seguinte, já lê a saudação. <strong>Não há uma única espera no arquivo.</strong></p>' +
+      '<p><strong>Repare no detalhe mais interessante:</strong> não houve ' +
+      '<code class="inline">NoSuchElementException</code>. O elemento ' +
+      '<code class="inline">#ola-usuario</code> já existe no HTML desde o carregamento da página &mdash; ' +
+      'ele está apenas oculto e vazio. Então <code class="inline">find_element</code> ' +
+      '<em>encontra</em> o elemento e devolve texto vazio. O teste não falha por não achar: ' +
+      'falha por acreditar que achou algo pronto.</p>' +
+      '<p>Dentro do IDE o mesmo teste passava, porque o motor da extensão espera automaticamente entre os comandos. ' +
+      'Essa espera <strong>não é exportada</strong>. O teste gravado funciona na ferramenta e quebra fora dela.</p>' +
+      '<h3>Perguntas para o README da entrega</h3>' +
       '<ol>' +
-      '<li>Há chamadas de <code class="inline">time.sleep()</code> ou esperas fixas no código?</li>' +
-      '<li>Os seletores são legíveis ou são XPaths longos e frágeis?</li>' +
-      '<li>Se um desenvolvedor mudar a posição de uma div na página, esse teste quebra?</li>' +
-      '<li>Dá para reaproveitar o login em outros testes, ou ele está duplicado?</li>' +
+      '<li>Quantas linhas de espera há no arquivo exportado? O que isso provoca?</li>' +
+      '<li>Por que o teste passava dentro do IDE e falha no pytest?</li>' +
+      '<li>O que acontece com o seletor <code class="inline">xpath=//div[2]/input</code> se um desenvolvedor ' +
+      'inserir um aviso acima do formulário?</li>' +
+      '<li>O login está pronto para ser reaproveitado em outros testes, ou teria de ser copiado e colado?</li>' +
+      '<li>Em uma frase: para que serve a gravação, e para que ela não serve?</li>' +
       '</ol>' +
-      '<div class="atencao"><strong>Conclusão da etapa:</strong> a gravação serve para descobrir o fluxo e os seletores rapidamente. ' +
-      'A partir daqui, vamos reescrever tudo à mão &mdash; e esse é o trabalho real de quem automatiza testes.</div>'
+      '<div class="dica"><strong>A partir daqui o laboratório muda de patamar.</strong> Você vai escrever o teste à mão, ' +
+      'com WebDriver e esperas explícitas. O WebDriver comanda o navegador por fora, pelo protocolo do W3C, através do ' +
+      'geckodriver &mdash; sem injetar nada na página. Ele não tem o defeito da etapa 4 e funciona em qualquer versão do Firefox.</div>'
   },
 
   /* ---------- 7 ---------- */
