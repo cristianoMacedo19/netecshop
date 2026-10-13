@@ -1,0 +1,196 @@
+{
+  "id": "9b90539e-c314-42e7-89e1-39cbb5b0bef4",
+  "version": "2.0",
+  "name": "netecshop",
+  "url": "https://cristianomacedo19.github.io",
+  "tests": [
+    {
+      "id": "1e55f799-9b43-40b4-a44a-d980bb166c9d",
+      "name": "login_valido",
+      "commands": [
+        {
+          "id": "e88df29f-db55-4fe9-ae69-dd79f0d03173",
+          "comment": "",
+          "command": "open",
+          "target": "/netecshop/app.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "ecd5ed40-29a3-4d6a-8da9-a0f01b7d0398",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1536x832",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "5a90f6b1-7dc5-4b64-964b-7d81907c5009",
+          "comment": "",
+          "command": "click",
+          "target": "id=usuario",
+          "targets": [
+            [
+              "id=usuario",
+              "id"
+            ],
+            [
+              "css=#usuario",
+              "css:finder"
+            ],
+            [
+              "xpath=//input[@id='usuario']",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=//div[2]/input",
+              "xpath:position"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "98791468-16cb-4c6c-8af8-c859fa2e397c",
+          "comment": "",
+          "command": "type",
+          "target": "id=usuario",
+          "targets": [
+            [
+              "id=usuario",
+              "id"
+            ],
+            [
+              "css=#usuario",
+              "css:finder"
+            ],
+            [
+              "xpath=//input[@id='usuario']",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=//div[2]/input",
+              "xpath:position"
+            ]
+          ],
+          "value": "aluno"
+        },
+        {
+          "id": "eadf34ab-f585-4387-b805-26797f6ea0ba",
+          "comment": "",
+          "command": "click",
+          "target": "id=senha",
+          "targets": [
+            [
+              "id=senha",
+              "id"
+            ],
+            [
+              "css=#senha",
+              "css:finder"
+            ],
+            [
+              "xpath=//input[@id='senha']",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=//div[3]/input",
+              "xpath:position"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "346d0893-123d-432b-b9d7-f913ba39a739",
+          "comment": "",
+          "command": "type",
+          "target": "id=senha",
+          "targets": [
+            [
+              "id=senha",
+              "id"
+            ],
+            [
+              "css=#senha",
+              "css:finder"
+            ],
+            [
+              "xpath=//input[@id='senha']",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=//div[3]/input",
+              "xpath:position"
+            ]
+          ],
+          "value": "ifma2026"
+        },
+        {
+          "id": "56fe145a-c188-492f-8ab4-b27055a42f7e",
+          "comment": "",
+          "command": "click",
+          "target": "id=btn-entrar",
+          "targets": [
+            [
+              "id=btn-entrar",
+              "id"
+            ],
+            [
+              "css=#btn-entrar",
+              "css:finder"
+            ],
+            [
+              "xpath=//button[@id='btn-entrar']",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=//button",
+              "xpath:position"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "6ebb2da1-d073-460d-a496-6370c04e266c",
+          "comment": "",
+          "command": "assertText",
+          "target": "id=ola-usuario",
+          "targets": [
+            [
+              "id=ola-usuario",
+              "id"
+            ],
+            [
+              "css=#ola-usuario",
+              "css:finder"
+            ],
+            [
+              "xpath=//span[@id='ola-usuario']",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=//div/span",
+              "xpath:position"
+            ]
+          ],
+          "value": "Olá, aluno"
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "31e29cca-4015-48c3-bc5f-02542bf72ecc",
+      "name": "Default Suite",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": [
+        "1e55f799-9b43-40b4-a44a-d980bb166c9d"
+      ]
+    }
+  ],
+  "urls": [
+    "https://cristianomacedo19.github.io"
+  ],
+  "plugins": []
+}
